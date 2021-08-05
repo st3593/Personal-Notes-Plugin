@@ -1,4 +1,4 @@
-export default Ember.Controller.extend({
+export default Ember.Component.extend({
     init() {
         this._super();
         this.set('notes', []);
