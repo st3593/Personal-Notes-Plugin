@@ -1,13 +1,13 @@
 export default Ember.Component.extend({
     init() {
         this._super();
-        this.set("notes", []);
+        this.set('notes', []);
         this.fetchNotes();
     },
 
     fetchNotes() {
         this.store
-            .findAll("note")
+            .findAll('note')
             .then((result) => {
                 for (const note of result.content) {
                     this.notes.pushObject(note);
@@ -23,11 +23,12 @@ export default Ember.Component.extend({
             if (!content) {
                 return;
             }
-            const noteRecord = this.store.createRecord("note", {
+            const noteRecord = this.store.createRecord('note', {
                 id: Date.now(),
                 content: content,
             });
             console.log("createRecord worked")
+            console.log(noteRecord)
             noteRecord
                 .save()
                 .then((result) => {
@@ -39,7 +40,7 @@ export default Ember.Component.extend({
         // DeleteNote
         deleteNote(note) {
             this.store
-                .destroyRecord("note", note)
+                .destroyRecord('note', note)
                 .then(() => {
                     console.log(this.notes);
                     this.notes.removeObject(note);
@@ -49,9 +50,10 @@ export default Ember.Component.extend({
         // UpdateNote
         updateNote(id, content) {
             this.store 
-                .findRecord("note", id)
+                .findRecord('note', id)
                 .then((post) => {
                     post.content = content;
+                    post.save();
                 })
                 .catch(console.error);
         },
