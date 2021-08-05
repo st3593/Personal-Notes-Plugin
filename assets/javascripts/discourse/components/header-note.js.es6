@@ -18,6 +18,8 @@ export default Ember.Component.extend({
 
     actions: {
         createNote(content) {
+            console.log("createNote called")
+            console.log(this)
             if (!content) {
                 return;
             }
