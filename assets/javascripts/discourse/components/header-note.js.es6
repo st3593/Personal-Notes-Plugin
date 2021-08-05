@@ -47,7 +47,7 @@ export default Ember.Component.extend({
                 })
                 .catch(console.error);
         },
-        // UpdateNote
+        // updateNote
         updateNote(id, content) {
             this.store 
                 .findRecord('note', id)
