@@ -27,7 +27,7 @@ export default Ember.Component.extend({
                 id: Date.now(),
                 content: content,
             });
-
+            console.log("createRecord worked")
             noteRecord
                 .save()
                 .then((result) => {
@@ -46,6 +46,14 @@ export default Ember.Component.extend({
                 })
                 .catch(console.error);
         },
-        // updateNote
+        // UpdateNote
+        updateNote(id, content) {
+            this.store 
+                .findRecord("note", id)
+                .then((post) => {
+                    post.content = content;
+                })
+                .catch(console.error);
+        },
     },
 });
