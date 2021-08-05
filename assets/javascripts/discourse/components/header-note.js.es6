@@ -32,8 +32,6 @@ export default Ember.Component.extend({
         },
 
         createNote(content) {
-            console.log("createNote called")
-            console.log(this)
             if (!content) {
                 return;
             }
@@ -41,8 +39,6 @@ export default Ember.Component.extend({
                 id: Date.now(),
                 content: content,
             });
-            console.log("createRecord worked")
-            console.log(noteRecord)
             noteRecord
                 .save()
                 .then((result) => {
