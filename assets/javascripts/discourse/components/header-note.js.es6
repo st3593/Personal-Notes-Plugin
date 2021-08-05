@@ -17,6 +17,20 @@ export default Ember.Component.extend({
     },
 
     actions: {
+        createOrUpdate(id, content) {
+            this.store
+                .findAll('note')
+                .then((result) => {
+                    for (const note of result.content) {
+                        if(note.id == id)
+                            this.updateNote(id, content);
+                        else
+                            this.createNote(content);
+                    }
+                })
+                .catch(console.error);
+        },
+
         createNote(content) {
             console.log("createNote called")
             console.log(this)
