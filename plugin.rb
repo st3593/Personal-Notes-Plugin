@@ -27,4 +27,30 @@ after_initialize do
     put '/notes/:note_id' => 'notes#update'
     delete '/notes/:note_id' => 'notes#destroy'
   end
+
+  require_dependency 'application_serializer'
+  class ::NoteSerializer < ApplicationSerializer
+    attributes(
+      :id,
+      :user_id,
+      :post_id,
+      :content
+    )
+
+    def id
+      object[:id]
+    end
+
+    def user_id
+      object[:user_id]
+    end
+
+    def post_id
+      object[:post_id]
+    end
+
+    def content
+      object[:content]
+    end
+  end
 end
