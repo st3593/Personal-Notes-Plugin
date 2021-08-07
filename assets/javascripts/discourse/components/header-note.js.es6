@@ -17,15 +17,15 @@ export default Ember.Component.extend({
     },
 
     actions: {
-        createOrUpdate(id, content) {
+        createOrUpdate(current) {
             this.store
                 .findAll('note')
                 .then((result) => {
                     for (const note of result.content) {
-                        if(note.id == id)
-                            this.updateNote(id, content);
+                        if(note.id == current.id)
+                            this.updateNote(current);
                         else
-                            this.createNote(content);
+                            this.createNote(current.content);
                     }
                 })
                 .catch(console.error);
