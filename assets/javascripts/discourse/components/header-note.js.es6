@@ -46,6 +46,7 @@ export default Ember.Component.extend({
                     this.notes.pushObject(result.target);
                 })
                 .catch(console.error);
+            document.getElementById("note-textarea").value = "";
         },
         // DeleteNote
         deleteNote(note) {
